@@ -3,7 +3,12 @@ import './App.css';
 
 function Todo(props) {
 	return (
-		<li>{props.todo.text}</li>
+		<li>
+			<div className="todo">
+				<span className="todo-text">{props.todo.text}</span>
+				<button className="delete-btn" onClick={props.onDelete}>X</button>
+			</div>
+		</li>
 	);
 }
 
@@ -29,7 +34,7 @@ class App extends Component {
 		if (this.state.value !== "") {
 			var newTodo = {
 				text: this.state.value,
-				id: Date.now(),
+				key: Date.now(),
 			}
 
 			this.setState({
@@ -45,22 +50,36 @@ class App extends Component {
 		event.preventDefault();
 	}
 
+	removeAll() {
+		this.setState({
+			todos: []
+		})
+	}
+
+	removeTodo(key) {
+		this.setState({
+			todos: this.state.todos.filter((todo) => todo.key !== key)
+		})
+	}
+
 	render() {
     	return (
 			<div className="App">
-				<div className="header">
+				<div className="App-header">
 					<h1>React TODO App</h1>
 					<form onSubmit={this.handleSubmit}>
 						<label>
-							Name:
-							<input type="text" value={this.state.value} onChange={this.handleChange} />
+							<input className="input-todo" type="text" placeholder="Enter Task" value={this.state.value} onChange={this.handleChange} />
 						</label>
-						<input type="submit" value="Submit" />
+						<input className="submit-todo" type="submit" value="Submit" />
 					</form>
 					<div className="todo-list">
 						<ul>
-							{this.state.todos.map((todo) => <Todo todo={todo} />)}
+							{this.state.todos.map((todo) => <Todo
+							onDelete = {() => this.removeTodo(todo.key)}
+							todo={todo} />)}
 						</ul>
+						<button onClick={() => this.removeAll()}>Clear All</button>
 					</div>
 				</div>
 			</div>
