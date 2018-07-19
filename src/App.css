@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 .input-todo {
@@ -17,13 +19,17 @@
 }
 
 .todo {
-  border: 1px solid orange;
+  width: 300px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 7px; 
+}
+
+li {
+  list-style: none;
 }
 
 .todo-text{
-  border: 1px solid red;
   font-size: 20px;
 }
 
