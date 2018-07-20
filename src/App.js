@@ -6,19 +6,11 @@ function Todo (props) {
 		<li>
 			<div className="todo">
 				<span className="todo-text">{props.todo.text}</span>
-				<button onClick={props.onEdit}>Edit</button>
-				<button className="delete-btn" onClick={props.onDelete}>Delete</button>
+				<div className="action-btns">
+					<button className="edit-btn" onClick={props.onEdit}>Edit</button>
+					<button className="delete-btn" onClick={props.onDelete}>Delete</button>
+				</div>
 			</div>
-		</li>
-	);
-}
-
-function TodoEdit(props) {
-	return (
-		<li>
-			<input type="text" placeholder="enter new task"/>
-			<button onClick={props.updateTodo}>Save</button>
-			<button onClick={props.onCancel}>Cancel</button>
 		</li>
 	);
 }
@@ -29,7 +21,10 @@ class App extends Component {
 		this.state = {
 			todos: [],
 			value: '',
+			newText: '',
 		};
+
+		//this.handleTodoListChange = this.handleTodoListChange.bind(this);
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -39,6 +34,14 @@ class App extends Component {
 	handleChange(event) {
 		this.setState({value: event.target.value});
 		//console.log("change :" + this.state.todos);
+	}
+
+	handleTodoListChange(key, event) {
+		var todos = this.state.todos.slice();
+		const index = todos.findIndex((todo) => todo.key === key);
+		todos[index]['text'] = event.target.value;
+		this.setState({todos: todos});
+		//console.log('value: ' + this.state.newText);
 	}
 
 	addTodo() {
@@ -60,6 +63,12 @@ class App extends Component {
 		this.addTodo();
 		//console.log(this.state.todos);
 		this.setState({ value: '', });
+		event.preventDefault();
+	}
+
+	handleTodoListSubmit(key, event){
+		
+		this.toggleEdit(key);
 		event.preventDefault();
 	}
 
@@ -94,34 +103,40 @@ class App extends Component {
 	render() {
     	return (
 			<div className="App">
-				<div className="App-header">
-					<h1>React TODO App</h1>
-					<form onSubmit={this.handleSubmit}>
-						<label>
-							<input className="input-todo" type="text" placeholder="Enter Task" 
-							value={this.state.value} onChange={this.handleChange} />
-						</label>
-						<input className="submit-todo" type="submit" value="Submit" />
+			<h1>React TODO App</h1>
+				<div className="todo-page">
+					<form className="add-form" onSubmit={this.handleSubmit}>
+						<input className="input-todo" type="text" name="newTodo" placeholder="Enter New Task" 
+						value={this.state.value} onChange={this.handleChange} />
+						<button className="submit-todo" type="submit">Add</button>
 					</form>
 					<div className="todo-list">
 						<ul>
 							{this.state.todos.map((todo) => {
 								if (!todo.edit) {
-									return <Todo todo={todo} 
+									return <Todo todo={todo} key={todo.key}
 									onDelete={() => this.removeTodo(todo.key)}
 									onEdit={() => this.toggleEdit(todo.key)} />
 								} else {
 									return (
-										<TodoEdit todo={todo} 
-										onCancel={() => this.toggleEdit(todo.key)}
-										onSave={() => this.updateTodo(todo.key)}/>
+										<div key={todo.key}>
+											<form
+											 className="edit-todo" 
+											 onSubmit={this.handleTodoListSubmit.bind(this, todo.key)}>
+												<input className="update-todo" 
+												onChange={this.handleTodoListChange.bind(this, todo.key)} 
+												value={todo.text}/>
+												<button className="submit-todo" type="button" 
+												onClick={() => this.toggleEdit(todo.key)}>Save</button>
+											</form>
+										</div>
 									);
 								}
 							})}
 						</ul>
-						<button onClick={() => this.removeAll()}>Clear All</button>
 					</div>
 				</div>
+				<button className="clear-btn" onClick={() => this.removeAll()}>Clear All</button>
 			</div>
     	);
 	}

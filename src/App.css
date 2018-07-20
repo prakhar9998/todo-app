@@ -1,40 +1,120 @@
+body {
+  background: rgb(96, 191, 204);
+}
 .App {
+  margin: auto;
   text-align: center;
+  background: rgb(96, 191, 204);
+}
+
+.edit-todo {
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  margin: 15px;
+}
+
+.update-todo {
+  width: 85%;
+  font-size: 15px;
+  font-family: 'Indie Flower', cursive;
+}
+
+.todo-page {
+  margin: auto;
+  width: 85%;
+  padding: 20px;
+  background: #ECEAE0;
+}
+
+h1 {
+  padding: 10px;
+  color: rgb(22, 22, 22);
+  font-family: 'Lobster';
+
+}
+
+.add-form{
   display: flex;
   justify-content: center;
 }
 
-.input-todo {
-  height: 30px;
-  width: 225px;
-  font-size: 20px;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-.todo {
-  width: 300px;
-  display: flex;
-  justify-content: space-between;
-  padding: 7px; 
+button {
+  vertical-align: bottom;
+  font-size: 19px;
+  padding: 0 15px 0 15px;
+  margin-left: 15px;
+  background-color: rgba(0, 0, 0, 0);
+  font-family: 'Poor Story', cursive;
 }
 
 li {
   list-style: none;
 }
 
-.todo-text{
-  font-size: 20px;
+.action-btns {
+  display: flex;
+  align-self: center;
+}
+
+.edit-btn {
+  border: 0.5px solid rgb(99, 170, 156);
+  font-size: 17px;
+}
+
+.edit-btn:hover {
+  color: white;
+  background-color:rgb(107, 174, 160);
+  border: 0.5px solid 	rgb(17, 59, 53);
 }
 
 .delete-btn {
-  border: 1px solid blue;
-  width: 25px;
-  margin-left: 20px;
+  border: 0.5px solid rgb(233, 99, 59);
+  font-size: 18px;
+}
+
+.delete-btn:hover {
+  color:white;
+  background-color: rgb(233, 58, 58);
+  border: 0.5px solid rgb(138, 15, 15);
+}
+
+.clear-btn {
+  margin: 20px;
+  border-style: none;
+  color: rgb(233, 233, 233);
+  background-color: rgb(113, 106, 216);
+  padding: 10px;
+  font-size: 18px;
+}
+
+.todo {
+  margin: 15px;
+  width: 90%;
+  font-family: 'Merienda', cursive;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-text {
+  width: 85%;
+  text-align: left;
+}
+
+.submit-todo {
+  color: green;
+  border-style: none;
+  border: 1px solid rgb(13, 128, 13);
+}
+
+.submit-todo:hover{
+  color: white;
+  border-color: rgb(73, 90, 90);
+  background-color: rgb(57, 160, 57);
+}
+
+.input-todo{
+  width: 55%;
+  font-size: 22px;
+  font-family: 'Indie Flower', cursive;
 }
