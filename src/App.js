@@ -103,7 +103,7 @@ class App extends Component {
 	render() {
     	return (
 			<div className="App">
-			<h1>React TODO App</h1>
+				<h1>React TODO App</h1>
 				<div className="todo-page">
 					<form className="add-form" onSubmit={this.handleSubmit}>
 						<input className="input-todo" type="text" name="newTodo" placeholder="Enter New Task" 
