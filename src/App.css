@@ -4,19 +4,19 @@ body {
 .App {
   margin: auto;
   text-align: center;
-  background: rgb(96, 191, 204);
+  background: rgb(96, 192, 204);
 }
 
 .edit-todo {
   display: flex;
   justify-content: center;
-  width: 90%;
+  width: 95%;
   margin: 15px;
 }
 
 .update-todo {
   width: 85%;
-  font-size: 20px;
+  font-size: 22px;
   font-family: 'Indie Flower', cursive;
 }
 
@@ -24,7 +24,7 @@ body {
   margin: auto;
   width: 85%;
   padding: 20px;
-  background: #ECEAE0;
+  background: #8B4513;
 }
 
 h1 {
